@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import WeatherCards from './components/weatherCards'
-import { Stack, Input, Box } from '@chakra-ui/react'
+import { Stack, Input, Box, VStack, Flex, Spinner } from '@chakra-ui/react'
 
 function App () {
   const [query, setQuery] = useState('')
   const [weather, setWeather] = useState()
+  const [loading, setLoading] = useState(false)
 
   const api = {
     key: '35a517189df8b523bf85a9cfdbfe1160',
@@ -30,16 +31,17 @@ function App () {
       .then((res) => res.json())
       .then((result) => {
         setWeather(result)
+        setLoading(false)
       })
-    console.log(weather)
   }
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(success)
+    setLoading(true)
   }, [])
 
   return (
-    <Stack bg="#4b307d" h="100vh">
+    <Stack bg="#219ebc" h="100vh">
       <Box display="flex" justifyContent="center">
         <Input
           placeholder="Search a place"
@@ -51,7 +53,24 @@ function App () {
           onKeyPress={search}
         />
       </Box>
-      <WeatherCards city={weather?.name} country={weather?.sys.country} weather={weather?.weather[0].main} temperature={Math.round(weather?.main.temp)} />
+
+      <Flex
+        h={'50vh'}
+        justifyContent={'center'}
+        display={loading ? 'flex' : 'none'}
+        alignItems={'center'}
+      >
+        <Spinner w={'100px'} h={'100px'} color="#E9E9EB" thickness="15px" />
+      </Flex>
+
+      <VStack display={loading ? 'none' : 'flex'}>
+        <WeatherCards
+          city={weather?.name}
+          country={weather?.sys.country}
+          weather={weather?.weather[0].main}
+          temperature={Math.round(weather?.main.temp)}
+        />
+      </VStack>
     </Stack>
   )
 }
