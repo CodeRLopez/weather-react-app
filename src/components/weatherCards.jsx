@@ -3,11 +3,14 @@ import React, { useEffect, useState } from 'react'
 import {
   Heading,
   Image,
-  Box,
   Center,
   Text,
   Button,
-  useColorModeValue
+  HStack,
+  VStack,
+  Flex,
+  Box,
+  Divider
 } from '@chakra-ui/react'
 import Cloudy from '../assets/Cloudy.png'
 import Rainy from '../assets/Rain.png'
@@ -54,9 +57,9 @@ export function WeatherCards (props) {
   }
 
   return (
-    <Center py={6}>
-      <Box
-        w={'100vw'}
+    <Center pt={6} pr={'0px'}>
+      <HStack
+        w={['280px', '350px', '700px', '700px', '75vw']}
         mx={'2%'}
         h={'450px'}
         bg='#9da0a059'
@@ -65,43 +68,79 @@ export function WeatherCards (props) {
         p={6}
         textAlign={'center'}
       >
-        <Box display={'flex'} justifyContent='center'>
-        <Image
-          w={'150px'}
-          src={icon}
-          alt={'Weather Icon'}
-          pos={'relative'}
-        />
-        </Box>
-        <Text fontSize={'lg'} fontWeight='bold' mb={'15px'}>
-          {props.weather}
-        </Text>
-        <Heading fontSize={'2xl'} fontFamily={'body'}>
-        {props.city}, {props.country}
-        </Heading>
-        <Text
-          mt='10px'
-          textAlign={'center'}
-          color={useColorModeValue('gray.700', 'gray.400')}
-          px={3}
-          fontStyle='italic'
-          fontWeight={'black'}
-          fontSize={'6xl'}
-        >
-          {props.temperature}°c
-        </Text>
-        <Text>
-        {dateBuilder(new Date())}
-        </Text>
-        <Button
-            flex={1}
-            fontSize={'sm'}
+      <Flex w={'100%'} h={'100%'} justifyContent={'space-between'}>
+        <HStack display={'flex'} wrap={'wrap'} justifyContent={'center'}>
+          <VStack justifyContent={'center'} mr={['0px', '0px', '40px']} >
+            <Box display={'flex'} flexDirection={'column'} justifyContent={'flex-start'} alignItems={['center', 'center', 'flex-start']}>
+              <Heading fontSize={['3xl', '3xl', '4xl']} fontFamily={'body'}>
+                {props.city}, {props.country}
+              </Heading>
+              <Text>
+                {dateBuilder(new Date())}
+              </Text>
+            </Box>
+            <Image
+              pr={'10px'}
+              h={['150px', '150px', '250px']}
+              src={icon}
+              alt={'Weather Icon'}
+              pos={'relative'}
+            />
+          </VStack>
+          <VStack alignItems={['center', 'center', 'flex-start']} pr={['0px', '0px', '50px']} pb={['0px', '0px', '50px']}>
+            <Button
+            w={'40px'}
+            h={'40px'}
+            color={'black'}
+            fontWeight={'bold'}
+            fontSize={'2xl'}
+            pb={'5px'}
+            ml={'150px'}
+            mb={'50px'}
             rounded={'full'}
-            color={'white'}
-            mt={'10px'}>
-            ⭐
-          </Button>
-      </Box>
+            display={['none', 'none', 'flex', 'flex', 'none']}>
+              +
+            </Button>
+            <Text
+              fontStyle='italic'
+              fontWeight={'extrabold'}
+              fontSize={['6xl', '6xl', '8xl']}
+              w={'200px'}
+              h={['80px', '80px', '120px']}
+            >
+              {props.temperature}°c
+            </Text>
+            <Text fontSize={'2xl'} fontWeight={'bold'}>
+              {props.weather}
+            </Text>
+            <Button
+            w={'40px'}
+            h={'40px'}
+            color={'black'}
+            fontWeight={'bold'}
+            fontSize={'2xl'}
+            pb={'5px'}
+            rounded={'full'}
+            display={['flex', 'flex', 'none', 'none']}>
+              +
+            </Button>
+          </VStack>
+          <Divider orientation={['vertical']} w={'20px'} display={['none', 'none', 'none', 'none', 'block']}/>
+          <Divider orientation={['horizontal']} w={'100%'} display={['none', 'none', 'block', 'block', 'none']}/>
+        </HStack>
+        <Button
+          w={'40px'}
+          h={'40px'}
+          color={'black'}
+          fontWeight={'bold'}
+          fontSize={'2xl'}
+          pb={'5px'}
+          rounded={'full'}
+          display={['none', 'none', 'none', 'none', 'flex']}>
+          +
+        </Button>
+      </Flex>
+      </HStack>
     </Center>
   )
 }
