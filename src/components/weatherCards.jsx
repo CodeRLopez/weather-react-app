@@ -96,12 +96,11 @@ export function WeatherCards (props) {
             color={'black'}
             fontWeight={'bold'}
             fontSize={'2xl'}
-            pb={'5px'}
             ml={'150px'}
             mb={'50px'}
             rounded={'full'}
             display={['none', 'none', 'flex', 'flex', 'none']}>
-              +
+              ⭐
             </Button>
             <Text
               textAlign={['start']}
@@ -123,15 +122,14 @@ export function WeatherCards (props) {
             color={'black'}
             fontWeight={'bold'}
             fontSize={'2xl'}
-            pb={'5px'}
             rounded={'full'}
             display={['flex', 'flex', 'none', 'none']}>
-              +
+              ⭐
             </Button>
           </VStack>
           <Divider orientation={['vertical']} w={'20px'} display={['none', 'none', 'none', 'none', 'none', 'block']}/>
         </HStack>
-        <VStack display={'flex'} wrap={'wrap'} fontSize={['0px', '0px', '0px', '0px', '2xl', '3xl']} justifyContent={'center'} fontWeight={'bold'} fontStyle={'italic'}>
+        <VStack display={'flex'} wrap={'wrap'} fontSize={['0px', '0px', '0px', '0px', '3xl', '3xl']} justifyContent={'center'} fontWeight={'bold'} fontStyle={'italic'}>
           <Text>
             Feels like: {props.feels}°c
           </Text>
@@ -154,17 +152,22 @@ export function WeatherCards (props) {
           color={'black'}
           fontWeight={'bold'}
           fontSize={'2xl'}
-          pb={'5px'}
           rounded={'full'}
           display={['none', 'none', 'none', 'none', 'flex']}
           onClick={() => {
             props.setFav([
+              ...props.fav,
               {
-                weather: props.weather
+                icon,
+                country: props.country,
+                city: props.city,
+                temperature: props.temperature,
+                weather: props.weather,
+                key: Math.random().toString(32).substring(2, 9)
               }
             ])
           }}>
-          +
+          ⭐
         </Button>
       </Flex>
       </HStack>

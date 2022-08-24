@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import WeatherCards from './components/weatherCards'
-import { Stack, Input, Box, VStack, Flex, Spinner, Center, HStack } from '@chakra-ui/react'
+import { Stack, Input, Box, VStack, Flex, Spinner, Center, HStack, Heading, Text, Image } from '@chakra-ui/react'
 
 function App () {
   const [query, setQuery] = useState('')
@@ -80,6 +80,7 @@ function App () {
           humidity={weather?.main.humidity}
           wind={weather?.wind.speed}
           setFav={setFav}
+          fav={fav}
         />
         <Center pt={6} pr={'0px'}>
           {fav.map((card) => {
@@ -87,14 +88,26 @@ function App () {
             <HStack
               w={'200px'}
               mx={'2%'}
-              h={'250px'}
+              h={'220px'}
               bg='#9da0a059'
               boxShadow={'dark-lg'}
               rounded={'lg'}
               textAlign={'center'}
-              overflow-x={'hidden'}
-              key={''}
+              justifyContent={'center'}
+              key={card.key}
             >
+              <Box display={'flex'} alignItems={'center'} flexDirection={'column'}>
+                <Text fontWeight={'bold'} maxW={'100px'} h={'50px'}>
+                  {card.city}, {card.country}
+                </Text>
+                <Image w={'90px'} h={'80px'} src={card.icon}/>
+                <Heading>
+                  {card.temperature}°c
+                </Heading>
+                <Box>
+                {card.weather}
+                </Box>
+              </Box>
             </HStack>
             )
           })}
