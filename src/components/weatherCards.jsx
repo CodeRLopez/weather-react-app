@@ -67,6 +67,7 @@ export function WeatherCards (props) {
         rounded={'lg'}
         p={6}
         textAlign={'center'}
+        overflow-x={'hidden'}
       >
       <Flex w={'100%'} h={'100%'} justifyContent={'space-between'}>
         <HStack display={'flex'} wrap={'wrap'} justifyContent={'center'}>
@@ -80,6 +81,7 @@ export function WeatherCards (props) {
               </Text>
             </Box>
             <Image
+              maxW={'320px'}
               pr={'10px'}
               h={['150px', '150px', '250px']}
               src={icon}
@@ -127,7 +129,7 @@ export function WeatherCards (props) {
               +
             </Button>
           </VStack>
-          <Divider orientation={['vertical']} w={'20px'} display={['none', 'none', 'none', 'none', 'block']}/>
+          <Divider orientation={['vertical']} w={'20px'} display={['none', 'none', 'none', 'none', 'none', 'block']}/>
         </HStack>
         <VStack display={'flex'} wrap={'wrap'} fontSize={['0px', '0px', '0px', '0px', '3xl']} justifyContent={'center'} fontWeight={'bold'} fontStyle={'italic'}>
           <Text>
