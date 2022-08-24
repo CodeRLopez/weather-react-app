@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import WeatherCards from './components/weatherCards'
-import { Stack, Input, Box, VStack, Flex, Spinner } from '@chakra-ui/react'
+import { Stack, Input, Box, VStack, Flex, Spinner, Center, HStack } from '@chakra-ui/react'
 
 function App () {
   const [query, setQuery] = useState('')
   const [weather, setWeather] = useState()
   const [loading, setLoading] = useState(false)
+  const [fav, setFav] = useState([])
 
   const api = {
     key: process.env.REACT_APP_KEY,
@@ -39,6 +40,10 @@ function App () {
     navigator.geolocation.getCurrentPosition(success)
     setLoading(true)
   }, [])
+
+  useEffect(() => {
+    console.log(fav)
+  }, [fav])
 
   return (
     <Stack bgGradient='linear(to-b, #2980b9, #6dd5fa, #6dd5fa, #ffffff)' h="100vh">
@@ -74,7 +79,26 @@ function App () {
           high={weather?.main.temp_max}
           humidity={weather?.main.humidity}
           wind={weather?.wind.speed}
+          setFav={setFav}
         />
+        <Center pt={6} pr={'0px'}>
+          {fav.map((card) => {
+            return (
+            <HStack
+              w={'200px'}
+              mx={'2%'}
+              h={'250px'}
+              bg='#9da0a059'
+              boxShadow={'dark-lg'}
+              rounded={'lg'}
+              textAlign={'center'}
+              overflow-x={'hidden'}
+              key={''}
+            >
+            </HStack>
+            )
+          })}
+        </Center>
       </VStack>
     </Stack>
   )
