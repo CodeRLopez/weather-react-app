@@ -102,11 +102,13 @@ export function WeatherCards (props) {
               +
             </Button>
             <Text
+              textAlign={['start']}
               fontStyle='italic'
               fontWeight={'extrabold'}
               fontSize={['6xl', '6xl', '8xl']}
               w={'200px'}
               h={['80px', '80px', '120px']}
+              pl={['38px', '38px', '0px']}
             >
               {props.temperature}°c
             </Text>
@@ -126,8 +128,24 @@ export function WeatherCards (props) {
             </Button>
           </VStack>
           <Divider orientation={['vertical']} w={'20px'} display={['none', 'none', 'none', 'none', 'block']}/>
-          <Divider orientation={['horizontal']} w={'100%'} display={['none', 'none', 'block', 'block', 'none']}/>
         </HStack>
+        <VStack display={'flex'} wrap={'wrap'} fontSize={['0px', '0px', '0px', '0px', '3xl']} justifyContent={'center'} fontWeight={'bold'} fontStyle={'italic'}>
+          <Text>
+            Feels like: {props.feels}°c
+          </Text>
+          <Text>
+            Low: {props.low}°c
+          </Text>
+          <Text>
+            High: {props.high}°c
+          </Text>
+          <Text>
+            Humidity: {props.humidity}%
+          </Text>
+          <Text>
+            Wind: {props.wind}m/s
+          </Text>
+        </VStack>
         <Button
           w={'40px'}
           h={'40px'}

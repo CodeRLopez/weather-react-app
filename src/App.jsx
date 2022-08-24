@@ -8,8 +8,8 @@ function App () {
   const [loading, setLoading] = useState(false)
 
   const api = {
-    key: '35a517189df8b523bf85a9cfdbfe1160',
-    base: 'https://api.openweathermap.org/data/2.5/'
+    key: process.env.REACT_APP_KEY,
+    base: process.env.REACT_APP_BASE
   }
 
   const search = (evt) => {
@@ -41,11 +41,11 @@ function App () {
   }, [])
 
   return (
-    <Stack bg="#219ebc" h="100vh">
+    <Stack bgGradient='linear(to-b, #2980b9, #6dd5fa, #6dd5fa, #ffffff)' h="100vh">
       <Box display="flex" justifyContent="center">
         <Input
           placeholder="Search a place"
-          w="30%"
+          w={['60%', '60%', '45%', '45%', '30%']}
           bg="white"
           border="none"
           onChange={(e) => setQuery(e.target.value)}
@@ -69,6 +69,11 @@ function App () {
           country={weather?.sys.country}
           weather={weather?.weather[0].main}
           temperature={Math.round(weather?.main.temp)}
+          feels={Math.round(weather?.main.feels_like)}
+          low={weather?.main.temp_min}
+          high={weather?.main.temp_max}
+          humidity={weather?.main.humidity}
+          wind={weather?.wind.speed}
         />
       </VStack>
     </Stack>
