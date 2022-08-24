@@ -44,6 +44,23 @@ export function WeatherCards (props) {
     }
   }, [props.weather])
 
+  const onClickHandler = () => {
+    const numArray = props.fav.length
+    numArray < 6
+      ? props.setFav([
+        ...props.fav,
+        {
+          icon,
+          country: props.country,
+          city: props.city,
+          temperature: props.temperature,
+          weather: props.weather,
+          key: Math.random().toString(32).substring(2, 9)
+        }
+      ])
+      : props.setFav(props.fav)
+  }
+
   const dateBuilder = (d) => {
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
     const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
@@ -61,7 +78,7 @@ export function WeatherCards (props) {
       <HStack
         w={['280px', '350px', '700px', '700px', '75vw']}
         mx={'2%'}
-        h={'450px'}
+        h={'500px'}
         bg='#9da0a059'
         boxShadow={'dark-lg'}
         rounded={'lg'}
@@ -73,7 +90,7 @@ export function WeatherCards (props) {
         <HStack display={'flex'} wrap={'wrap'} justifyContent={'center'}>
           <VStack justifyContent={'center'} mr={['0px', '0px', '40px']} >
             <Box display={'flex'} flexDirection={'column'} justifyContent={'flex-start'} alignItems={['center', 'center', 'flex-start']}>
-              <Heading fontSize={['3xl', '3xl', '4xl']} fontFamily={'body'}>
+              <Heading fontSize={['3xl', '3xl', '3xl', '3xl', '4xl']} fontFamily={'body'} maxW={'220px'}>
                 {props.city}, {props.country}
               </Heading>
               <Text>
@@ -96,12 +113,12 @@ export function WeatherCards (props) {
             color={'black'}
             fontWeight={'bold'}
             fontSize={'2xl'}
-            pb={'5px'}
             ml={'150px'}
             mb={'50px'}
             rounded={'full'}
-            display={['none', 'none', 'flex', 'flex', 'none']}>
-              +
+            display={['none', 'none', 'flex', 'flex', 'none']}
+            onClick={() => { onClickHandler() }}>
+              ⭐
             </Button>
             <Text
               textAlign={['start']}
@@ -123,15 +140,15 @@ export function WeatherCards (props) {
             color={'black'}
             fontWeight={'bold'}
             fontSize={'2xl'}
-            pb={'5px'}
             rounded={'full'}
-            display={['flex', 'flex', 'none', 'none']}>
-              +
+            display={['flex', 'flex', 'none', 'none']}
+            onClick={() => { onClickHandler() }}>
+              ⭐
             </Button>
           </VStack>
           <Divider orientation={['vertical']} w={'20px'} display={['none', 'none', 'none', 'none', 'none', 'block']}/>
         </HStack>
-        <VStack display={'flex'} wrap={'wrap'} fontSize={['0px', '0px', '0px', '0px', '3xl']} justifyContent={'center'} fontWeight={'bold'} fontStyle={'italic'}>
+        <VStack display={'flex'} wrap={'wrap'} fontSize={['0px', '0px', '0px', '0px', '3xl', '3xl']} justifyContent={'center'} fontWeight={'bold'} fontStyle={'italic'}>
           <Text>
             Feels like: {props.feels}°c
           </Text>
@@ -154,10 +171,10 @@ export function WeatherCards (props) {
           color={'black'}
           fontWeight={'bold'}
           fontSize={'2xl'}
-          pb={'5px'}
           rounded={'full'}
-          display={['none', 'none', 'none', 'none', 'flex']}>
-          +
+          display={['none', 'none', 'none', 'none', 'flex']}
+          onClick={() => { onClickHandler() }}>
+          ⭐
         </Button>
       </Flex>
       </HStack>
