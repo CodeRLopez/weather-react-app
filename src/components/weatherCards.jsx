@@ -56,7 +56,8 @@ export function WeatherCards (props) {
   return (
     <Center py={6}>
       <Box
-        w={'300px'}
+        w={'100vw'}
+        mx={'2%'}
         h={'450px'}
         bg='#9da0a059'
         boxShadow={'dark-lg'}
