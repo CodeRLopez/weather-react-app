@@ -18,9 +18,8 @@ function App () {
       fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
         .then((res) => res.json())
         .then((result) => {
-          setWeather(result)
+          result.cod !== '404' ? setWeather(result) : setWeather(weather)
           setQuery('')
-          console.log(weather)
         })
     }
   }
@@ -46,7 +45,7 @@ function App () {
   }, [fav])
 
   return (
-    <Stack bgGradient='linear(to-b, #2980b9, #6dd5fa, #6dd5fa, #ffffff)' h="100vh">
+    <Stack bgGradient='linear(to-b, #2980b9, #6dd5fa, #6dd5fa, #6dd5fa, #ffffff)' h="100%" bgAttachment={'fixed'} minH={'100vh'}>
       <Box display="flex" justifyContent="center">
         <Input
           placeholder="Search a place"
@@ -82,12 +81,14 @@ function App () {
           setFav={setFav}
           fav={fav}
         />
-        <Center pt={6} pr={'0px'}>
+        <Center pt={6} w={['auto', '350px', '700px', '700px', '75vw']} flexWrap={'wrap'}>
           {fav.map((card) => {
             return (
             <HStack
-              w={'200px'}
+              w={'150px'}
+              minW={'150px'}
               mx={'2%'}
+              my={'2%'}
               h={'220px'}
               bg='#9da0a059'
               boxShadow={'dark-lg'}

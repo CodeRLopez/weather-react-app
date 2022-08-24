@@ -44,6 +44,23 @@ export function WeatherCards (props) {
     }
   }, [props.weather])
 
+  const onClickHandler = () => {
+    const numArray = props.fav.length
+    numArray < 6
+      ? props.setFav([
+        ...props.fav,
+        {
+          icon,
+          country: props.country,
+          city: props.city,
+          temperature: props.temperature,
+          weather: props.weather,
+          key: Math.random().toString(32).substring(2, 9)
+        }
+      ])
+      : props.setFav(props.fav)
+  }
+
   const dateBuilder = (d) => {
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
     const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
@@ -99,7 +116,8 @@ export function WeatherCards (props) {
             ml={'150px'}
             mb={'50px'}
             rounded={'full'}
-            display={['none', 'none', 'flex', 'flex', 'none']}>
+            display={['none', 'none', 'flex', 'flex', 'none']}
+            onClick={() => { onClickHandler() }}>
               ⭐
             </Button>
             <Text
@@ -123,7 +141,8 @@ export function WeatherCards (props) {
             fontWeight={'bold'}
             fontSize={'2xl'}
             rounded={'full'}
-            display={['flex', 'flex', 'none', 'none']}>
+            display={['flex', 'flex', 'none', 'none']}
+            onClick={() => { onClickHandler() }}>
               ⭐
             </Button>
           </VStack>
@@ -154,19 +173,7 @@ export function WeatherCards (props) {
           fontSize={'2xl'}
           rounded={'full'}
           display={['none', 'none', 'none', 'none', 'flex']}
-          onClick={() => {
-            props.setFav([
-              ...props.fav,
-              {
-                icon,
-                country: props.country,
-                city: props.city,
-                temperature: props.temperature,
-                weather: props.weather,
-                key: Math.random().toString(32).substring(2, 9)
-              }
-            ])
-          }}>
+          onClick={() => { onClickHandler() }}>
           ⭐
         </Button>
       </Flex>
