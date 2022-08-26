@@ -50,10 +50,6 @@ function App () {
     setLoading(true)
   }, [])
 
-  useEffect(() => {
-    console.log(fav)
-  }, [fav])
-
   return (
     <Stack
       bgGradient="linear(to-b, #2980b9, #6dd5fa, #6dd5fa, #6dd5fa, #ffffff)"
