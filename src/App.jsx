@@ -1,6 +1,16 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react'
 import WeatherCards from './components/weatherCards'
-import { Stack, Input, Box, VStack, Flex, Spinner, Center, HStack, Heading, Text, Image } from '@chakra-ui/react'
+import {
+  Stack,
+  Input,
+  Box,
+  VStack,
+  Flex,
+  Spinner,
+  Center
+} from '@chakra-ui/react'
+import { FavCards } from './components/favCards'
 
 function App () {
   const [query, setQuery] = useState('')
@@ -45,7 +55,12 @@ function App () {
   }, [fav])
 
   return (
-    <Stack bgGradient='linear(to-b, #2980b9, #6dd5fa, #6dd5fa, #6dd5fa, #ffffff)' h="100%" bgAttachment={'fixed'} minH={'100vh'}>
+    <Stack
+      bgGradient="linear(to-b, #2980b9, #6dd5fa, #6dd5fa, #6dd5fa, #ffffff)"
+      h="100%"
+      bgAttachment={'fixed'}
+      minH={'100vh'}
+    >
       <Box display="flex" justifyContent="center">
         <Input
           placeholder="Search a place"
@@ -81,35 +96,21 @@ function App () {
           setFav={setFav}
           fav={fav}
         />
-        <Center pt={6} w={['auto', '350px', '700px', '700px', '75vw']} flexWrap={'wrap'}>
+        <Center
+          pt={6}
+          w={['auto', '350px', '700px', '700px', '75vw']}
+          flexWrap={'wrap'}
+        >
           {fav.map((card) => {
             return (
-            <HStack
-              w={'150px'}
-              minW={'150px'}
-              mx={'2%'}
-              my={'2%'}
-              h={'220px'}
-              bg='#9da0a059'
-              boxShadow={'dark-lg'}
-              rounded={'lg'}
-              textAlign={'center'}
-              justifyContent={'center'}
-              key={card.key}
-            >
-              <Box display={'flex'} alignItems={'center'} flexDirection={'column'}>
-                <Text fontWeight={'bold'} maxW={'100px'} h={'50px'}>
-                  {card.city}, {card.country}
-                </Text>
-                <Image w={'90px'} h={'80px'} src={card.icon}/>
-                <Heading>
-                  {card.temperature}°c
-                </Heading>
-                <Box>
-                {card.weather}
-                </Box>
-              </Box>
-            </HStack>
+              <FavCards
+                key={card.key}
+                city={card.city}
+                country={card.country}
+                temperature={card.temperature}
+                img={card.icon}
+                weather={card.weather}
+              />
             )
           })}
         </Center>

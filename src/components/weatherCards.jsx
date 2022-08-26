@@ -12,7 +12,24 @@ import {
   Box,
   Divider
 } from '@chakra-ui/react'
-import { cardContainer, mainFlexContainer, weatherImageAndTemp, locationAndImage, locationDate, cityAndCountry, image, tempWeatherAndButton, tabletFavButton, temperature, weather, phoneFavButton, divider, extraWeatherInfo, desktopFavButton } from './weatherCardsStyles'
+import {
+  cardContainer,
+  mainFlexContainer,
+  weatherImageAndTemp,
+  locationAndImage,
+  locationDate,
+  cityAndCountry,
+  image,
+  tempWeatherAndButton,
+  tabletFavButton,
+  temperature,
+  weather,
+  phoneFavButton,
+  divider,
+  extraWeatherInfo,
+  desktopFavButton,
+  date
+} from './weatherCardsStyles'
 import Cloudy from '../assets/Cloudy.png'
 import Rainy from '../assets/Rain.png'
 import Clear from '../assets/Clear.png'
@@ -66,67 +83,55 @@ export function WeatherCards (props) {
   return (
     <Center pt={6} pr={'0px'}>
       <HStack {...cardContainer}>
-      <Flex {...mainFlexContainer}>
-        <HStack {...weatherImageAndTemp}>
-          <VStack {...locationAndImage}>
-            <Box {...locationDate}>
-              <Heading {...cityAndCountry}>
-                {props.city}, {props.country}
-              </Heading>
-              <Text>
-                {dateBuilder(new Date())}
-              </Text>
-            </Box>
-            <Image
-              {...image}
-              src={icon}
-            />
+        <Flex {...mainFlexContainer}>
+          <HStack {...weatherImageAndTemp}>
+            <VStack {...locationAndImage}>
+              <Box {...locationDate}>
+                <Heading {...cityAndCountry}>
+                  {props.city}, {props.country}
+                </Heading>
+                <Text {...date}>{dateBuilder(new Date())}</Text>
+              </Box>
+              <Image {...image} src={icon} />
+            </VStack>
+            <VStack {...tempWeatherAndButton}>
+              <Button
+                {...tabletFavButton}
+                onClick={() => {
+                  onClickHandler()
+                }}
+              >
+                ⭐
+              </Button>
+              <Text {...temperature}>{props.temperature}°c</Text>
+              <Text {...weather}>{props.weather}</Text>
+              <Button
+                {...phoneFavButton}
+                onClick={() => {
+                  onClickHandler()
+                }}
+              >
+                ⭐
+              </Button>
+            </VStack>
+            <Divider {...divider} />
+          </HStack>
+          <VStack {...extraWeatherInfo}>
+            <Text>Feels like: {props.feels}°c</Text>
+            <Text>Low: {props.low}°c</Text>
+            <Text>High: {props.high}°c</Text>
+            <Text>Humidity: {props.humidity}%</Text>
+            <Text>Wind: {props.wind}m/s</Text>
           </VStack>
-          <VStack {...tempWeatherAndButton}>
-            <Button
-            {...tabletFavButton}
-            onClick={() => { onClickHandler() }}>
-              ⭐
-            </Button>
-            <Text
-              {...temperature}
-            >
-              {props.temperature}°c
-            </Text>
-            <Text {...weather}>
-              {props.weather}
-            </Text>
-            <Button
-            {...phoneFavButton}
-            onClick={() => { onClickHandler() }}>
-              ⭐
-            </Button>
-          </VStack>
-          <Divider {...divider}/>
-        </HStack>
-        <VStack {...extraWeatherInfo}>
-          <Text>
-            Feels like: {props.feels}°c
-          </Text>
-          <Text>
-            Low: {props.low}°c
-          </Text>
-          <Text>
-            High: {props.high}°c
-          </Text>
-          <Text>
-            Humidity: {props.humidity}%
-          </Text>
-          <Text>
-            Wind: {props.wind}m/s
-          </Text>
-        </VStack>
-        <Button
-          {...desktopFavButton}
-          onClick={() => { onClickHandler() }}>
-          ⭐
-        </Button>
-      </Flex>
+          <Button
+            {...desktopFavButton}
+            onClick={() => {
+              onClickHandler()
+            }}
+          >
+            ⭐
+          </Button>
+        </Flex>
       </HStack>
     </Center>
   )
