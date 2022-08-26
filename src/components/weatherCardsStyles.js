@@ -37,7 +37,7 @@ export const locationDate = {
 export const cityAndCountry = {
   fontSize: ['3xl', '3xl', '3xl', '3xl', '4xl'],
   fontFamily: 'body',
-  maxW: '220px'
+  maxW: '400px'
 }
 
 export const image = {
@@ -114,4 +114,8 @@ export const desktopFavButton = {
   fontSize: '2xl',
   rounded: 'full',
   display: ['none', 'none', 'none', 'none', 'flex']
+}
+
+export const date = {
+  maxW: '220px'
 }
